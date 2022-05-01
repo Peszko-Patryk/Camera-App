@@ -8,46 +8,52 @@ public class Line {
     private Point b;
     private final float move = 0.4f;
     private final double rotate = Math.toRadians(0.5);
+    private int startX, stopX, startY, stopY;
 
     public Line(Point a, Point b) {
         this.a = a;
         this.b = b;
     }
 
-    public void paint(Graphics g, int xAngle, int yAngle) {
-        double aX, aY, bX, bY;
-        double xTan = tan(Math.toRadians(xAngle / 2.0));
-        double yTan = tan(Math.toRadians(yAngle / 2.0));
+    public void paint(Graphics g, int angle) {
+        if (isVisible(angle)) {
+            g.drawLine(startX, startY, stopX, stopY);
+        }
+    }
+
+    public boolean isVisible(int angle) {
+        double xTan = tan(Math.toRadians(angle / 2.0));
+        double yTan = tan(Math.toRadians(angle / 2.0));
 
         if (a.getZ() > 0 && b.getZ() > 0) {
-            aX = (500 * a.getX()) / (a.getZ() * xTan);
-            aY = (500 * a.getY()) / (a.getZ() * yTan);
-            bX = (500 * b.getX()) / (b.getZ() * xTan);
-            bY = (500 * b.getY()) / (b.getZ() * yTan);
+            startX = (int) ((500 * a.getX()) / (a.getZ() * xTan)) + 500;
+            startY = (int) -((500 * a.getY()) / (a.getZ() * yTan)) + 350;
+            stopX = (int) ((500 * b.getX()) / (b.getZ() * xTan)) + 500;
+            stopY = (int) -((500 * b.getY()) / (b.getZ() * yTan)) + 350;
         } else if (a.getZ() > 0 || b.getZ() > 0) {
             if (a.getZ() > 0) {
-                if (pointInSight(a, xAngle, yAngle)) {
-                    aX = (500 * a.getX()) / (a.getZ() * xTan);
-                    aY = (500 * a.getY()) / (a.getZ() * yTan);
-                    bX = (500 * b.getX()) / xTan;
-                    bY = (500 * b.getY()) / yTan;
+                if (pointInSight(a, angle, angle)) {
+                    startX = (int) ((500 * a.getX()) / (a.getZ() * xTan)) + 500;
+                    startY = (int) -((500 * a.getY()) / (a.getZ() * yTan)) + 350;
+                    stopX = (int) ((500 * b.getX()) / xTan) + 500;
+                    stopY = (int) -((500 * b.getY()) / yTan) + 350;
                 } else {
-                    return;
+                    return false;
                 }
             } else {
-                if (pointInSight(b, xAngle, yAngle)) {
-                    aX = (500 * a.getX()) / (1 * xTan);
-                    aY = (500 * a.getY()) / (1 * yTan);
-                    bX = (500 * b.getX()) / (b.getZ() * xTan);
-                    bY = (500 * b.getY()) / (b.getZ() * yTan);
+                if (pointInSight(b, angle, angle)) {
+                    startX = (int) ((500 * a.getX()) / (1 * xTan)) + 500;
+                    startY = (int) -((500 * a.getY()) / (1 * yTan)) + 350;
+                    stopX = (int) ((500 * b.getX()) / (b.getZ() * xTan)) + 500;
+                    stopY = (int) -((500 * b.getY()) / (b.getZ() * yTan)) + 350;
                 } else {
-                    return;
+                    return false;
                 }
             }
         } else {
-            return;
+            return false;
         }
-        g.drawLine((int) aX + 500, (int) -aY + 350, (int) bX + 500, (int) -bY + 350);
+        return true;
     }
 
     private boolean pointInSight(Point a, int xAngle, int yAngle) {
@@ -135,5 +141,29 @@ public class Line {
     public void moveForward() {
         a.setZ(a.getZ() + move);
         b.setZ(b.getZ() + move);
+    }
+
+    public Point getA() {
+        return a;
+    }
+
+    public Point getB() {
+        return b;
+    }
+
+    public int getStartX() {
+        return startX;
+    }
+
+    public int getStopX() {
+        return stopX;
+    }
+
+    public int getStartY() {
+        return startY;
+    }
+
+    public int getStopY() {
+        return stopY;
     }
 }

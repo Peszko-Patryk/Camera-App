@@ -6,7 +6,8 @@ public class CameraApp {
     public static void main(String[] args) {
         FileReader fr = new FileReader(args[0]);
         ArrayList<Line> lines = fr.getLines();
-        Observer observer = new Observer(0, 0, 0, lines);
+        ArrayList<Figure> figures = fr.getFigures();
+        Observer observer = new Observer(0, 0, 0, lines, figures);
 
         JFrame frame = new JFrame();
         Graphic graphic = new Graphic();

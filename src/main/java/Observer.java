@@ -1,20 +1,25 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Observer extends Point {
 
-    private ArrayList<Line> lines;
+    private final ArrayList<Line> lines;
+    private ArrayList<Figure> figures;
     private int xAngle = 90;
     private int yAngle = 90;
 
-    public Observer(float x, float y, float z, ArrayList<Line> lines) {
+    public Observer(float x, float y, float z, ArrayList<Line> lines, ArrayList<Figure> figures) {
         super(x, y, z);
         this.lines = lines;
+        this.figures = figures;
     }
 
     public void paint(Graphics g) {
-        for (Line line : lines) {
-            line.paint(g, xAngle, yAngle);
+        figures.sort(new FiguresSort());
+
+        for (Figure figure : figures) {
+            figure.paint(g, xAngle, yAngle);
         }
     }
 

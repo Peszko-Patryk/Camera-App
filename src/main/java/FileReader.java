@@ -33,4 +33,12 @@ public class FileReader {
     public ArrayList<Line> getLines() {
         return lines;
     }
+
+    public ArrayList<Figure> getFigures() {
+        ArrayList<Figure> figures = new ArrayList<>();
+        for (int i = 0; i < lines.size() - 1; i += 4) {
+            figures.add(new Figure(lines.subList(i, i + 4)));
+        }
+        return figures;
+    }
 }
