@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class CameraApp {
 
     public static void main(String[] args) {
+        System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
         FileReader fr = new FileReader(args[0]);
         ArrayList<Line> lines = fr.getLines();
         ArrayList<Figure> figures = fr.getFigures();
@@ -18,7 +19,7 @@ public class CameraApp {
         frame.setTitle("Camera App");
         frame.setResizable(false);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.add(graphic);
     }
 }

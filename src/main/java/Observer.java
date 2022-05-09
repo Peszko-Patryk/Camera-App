@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Observer extends Point {
 
@@ -19,7 +18,7 @@ public class Observer extends Point {
         figures.sort(new FiguresSort());
 
         for (Figure figure : figures) {
-            figure.paint(g, xAngle, yAngle);
+            figure.paint(g, xAngle);
         }
     }
 

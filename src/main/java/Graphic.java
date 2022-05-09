@@ -1,14 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Graphic extends JPanel implements ActionListener {
+public class Graphic extends JPanel {
 
-    private Observer observer;
+    private transient Observer observer;
 
+    @Override
     public void paint(Graphics g) {
-        g.setColor(Color.BLACK);
+        g.setColor(Color.PINK);
         g.fillRect(0, 0, 1000, 700);
         observer.paint(g);
         g.setColor(Color.white);
@@ -31,9 +30,5 @@ public class Graphic extends JPanel implements ActionListener {
 
     public void setObserver(Observer observer) {
         this.observer = observer;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
     }
 }
