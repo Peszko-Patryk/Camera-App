@@ -32,16 +32,6 @@ public class Figure {
         return polygon;
     }
 
-    public double getDistance() {
-        double x = 0, y = 0, z = 0;
-        for (Line line : lines) {
-            x += line.getA().getX() + line.getB().getX();
-            y += line.getA().getY() + line.getB().getY();
-            z += line.getA().getZ() + line.getB().getZ();
-        }
-        return Math.sqrt(Math.pow(x / lines.size(), 2) + Math.pow(y / lines.size(), 2) + Math.pow(z / lines.size(), 2));
-    }
-
     public ArrayList<Point> getFirstPoints(){
         ArrayList<Point> points = new ArrayList<>();
         points.add(lines.get(0).getA());

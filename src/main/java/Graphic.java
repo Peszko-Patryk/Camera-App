@@ -7,7 +7,7 @@ public class Graphic extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        g.setColor(Color.PINK);
+        g.setColor(Color.BLACK);
         g.fillRect(0, 0, 1000, 700);
         observer.paint(g);
         g.setColor(Color.white);
