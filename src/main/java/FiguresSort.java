@@ -23,7 +23,7 @@ public class FiguresSort implements Comparator<Figure> {
         Point firstPoint = pointsToCheck.get(0);
         double result = firstPoint.getX() * x + firstPoint.getY() * y + firstPoint.getZ() * z + d;
         for (int i = 1; i < pointsToCheck.size() - 1; i++) {
-            Point point = pointsToCheck.get(0);
+            Point point = pointsToCheck.get(i);
             double nextResult = point.getX() * x + point.getY() * y + point.getZ() * z + d;
             if (nextResult * result < 0) {
                 return findWhichIsFirst(figure2, figure1);

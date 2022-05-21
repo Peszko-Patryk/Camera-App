@@ -13,7 +13,7 @@ public class Figure {
 
     public void paint(Graphics g, int xAngle) {
         Polygon polygon = createPolygon(xAngle);
-        g.setColor(Color.black);
+        g.setColor(Color.green);
         g.fillPolygon(polygon);
         g.setColor(Color.white);
         for (Line line : lines) {
