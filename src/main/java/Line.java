@@ -166,4 +166,12 @@ public class Line {
     public int getStopY() {
         return stopY;
     }
+
+    public void setA(Point a) {
+        this.a = a;
+    }
+
+    public void setB(Point b) {
+        this.b = b;
+    }
 }
