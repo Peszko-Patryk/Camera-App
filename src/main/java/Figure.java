@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Figure {
 
-    private List<Line> lines;
+    private final List<Line> lines;
     private final Color BASE_COLOR = new Color(18, 240, 168);
     private Color lighteningColor;
 
@@ -30,9 +30,8 @@ public class Figure {
         double dot = Vector.dot(normal, light);
         double sign = dot < 0 ? -1 : 1;
         dot = sign * dot * dot;
-        dot = (dot + 1) / 2 * 0.8;
-        double lightRatio = Math.min(1, Math.max(0, Vector.AMBIENT_LIGHT + dot));
-//        System.out.println("dot = " + dot + "light ratio = " + lightRatio);
+        dot = (dot + 1) / 2 * Light.MAX.value;
+        double lightRatio = Math.min(1, Math.max(0, Light.AMBIENT.value) + dot);
         lighteningColor = new Color((int) (BASE_COLOR.getRed() * lightRatio), (int) (BASE_COLOR.getGreen() * lightRatio)
                 , (int) (BASE_COLOR.getBlue() * lightRatio));
     }
