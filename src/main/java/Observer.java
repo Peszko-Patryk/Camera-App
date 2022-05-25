@@ -12,7 +12,7 @@ public class Observer extends Point {
     public Observer(float x, float y, float z, ArrayList<Line> lines, ArrayList<Figure> figures) {
         super(x, y, z);
         this.lines = lines;
-        lightVector = Vector.normalize(new Vector(new Point(0,0,0), new Point(1,2,0)));
+        lightVector = Vector.normalize(new Vector(new Point(0,0,0), new Point(1,2,3)));
         this.figures = figures;
     }
 

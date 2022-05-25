@@ -31,7 +31,7 @@ public class Figure {
         double sign = dot < 0 ? -1 : 1;
         dot = sign * dot * dot;
         dot = (dot + 1) / 2 * Light.MAX.value;
-        double lightRatio = Math.min(1, Math.max(0, Light.AMBIENT.value) + dot);
+        double lightRatio = Math.min(1, Light.AMBIENT.value + dot);
         lighteningColor = new Color((int) (BASE_COLOR.getRed() * lightRatio), (int) (BASE_COLOR.getGreen() * lightRatio)
                 , (int) (BASE_COLOR.getBlue() * lightRatio));
     }
