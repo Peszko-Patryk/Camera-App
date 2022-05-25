@@ -17,10 +17,6 @@ public class Figure {
         updateColor(lightVector);
         g.setColor(lighteningColor);
         g.fillPolygon(polygon);
-//        g.setColor(Color.white);
-//        for (Line line : lines) {
-//            line.paint(g, xAngle);
-//        }
     }
 
     private void updateColor(Vector light) {
@@ -28,10 +24,9 @@ public class Figure {
         Vector v2 = new Vector(lines.get(0).getB(), lines.get(1).getA());
         Vector normal = Vector.normalize(Vector.cross(v1, v2));
         double dot = Vector.dot(normal, light);
-        double sign = dot < 0 ? -1 : 1;
-        dot = sign * dot * dot;
-        dot = (dot + 1) / 2 * Light.MAX.value;
-        double lightRatio = Math.min(1, Light.AMBIENT.value + dot);
+        double cos = Math.pow(Vector.cos(normal, light), Light.N.value);
+        double lightRatio = Light.IP.value * (Light.KD.value * dot + Light.KS.value * cos) + Light.AMBIENT.value;
+        lightRatio = Math.max(Light.MIN.value, Math.min(Light.MAX.value, lightRatio));
         lighteningColor = new Color((int) (BASE_COLOR.getRed() * lightRatio), (int) (BASE_COLOR.getGreen() * lightRatio)
                 , (int) (BASE_COLOR.getBlue() * lightRatio));
     }

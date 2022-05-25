@@ -28,6 +28,13 @@ public class Vector extends Line {
         return new Vector(new Point(0, 0, 0), new Point((float) (v.x / magnitude), (float) (v.y / magnitude), (float) (v.z / magnitude)));
     }
 
+    // cos miedzy wektorami
+    public static double cos(Vector v1, Vector v2) {
+        double v1Len = Math.sqrt(v1.x * v1.x + v1.y * v1.y + v1.z * v1.z);
+        double v2Len = Math.sqrt(v2.x * v2.x + v2.y * v2.y + v2.z * v2.z);
+        return dot(v1, v2) / (v1Len * v2Len);
+    }
+
     public void update() {
         x = this.getB().getX() - this.getA().getX();
         y = this.getB().getY() - this.getA().getY();
