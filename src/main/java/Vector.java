@@ -1,6 +1,5 @@
 public class Vector extends Line {
 
-    public static final double AMBIENT_LIGHT = 0.05;
     private double x;
     private double y;
     private double z;
