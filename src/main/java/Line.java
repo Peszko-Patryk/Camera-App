@@ -1,24 +1,14 @@
-import java.awt.*;
-
 import static java.lang.Math.*;
 
 public class Line {
 
-    private Point a;
-    private Point b;
-    private final float move = 0.4f;
-    private final double rotate = Math.toRadians(0.5);
+    private final Point a;
+    private final Point b;
     private int startX, stopX, startY, stopY;
 
     public Line(Point a, Point b) {
         this.a = a;
         this.b = b;
-    }
-
-    public void paint(Graphics g, int angle) {
-        if (isVisible(angle)) {
-            g.drawLine(startX, startY, stopX, stopY);
-        }
     }
 
     public boolean isVisible(int angle) {
@@ -63,84 +53,84 @@ public class Line {
     }
 
     public void moveDown() {
-        a.setY(a.getY() - move);
-        b.setY(b.getY() - move);
+        a.setY((a.getY() - Camera.MOVE.value));
+        b.setY(b.getY() - Camera.MOVE.value);
     }
 
     public void moveUp() {
-        a.setY(a.getY() + move);
-        b.setY(b.getY() + move);
+        a.setY(a.getY() + Camera.MOVE.value);
+        b.setY(b.getY() + Camera.MOVE.value);
     }
 
     public void moveRight() {
-        a.setX(a.getX() + move);
-        b.setX(b.getX() + move);
+        a.setX(a.getX() + Camera.MOVE.value);
+        b.setX(b.getX() + Camera.MOVE.value);
     }
 
     public void moveLeft() {
-        a.setX(a.getX() - move);
-        b.setX(b.getX() - move);
+        a.setX(a.getX() - Camera.MOVE.value);
+        b.setX(b.getX() - Camera.MOVE.value);
     }
 
     public void rotateLeftZ() {
-        rotateZ(a, rotate);
-        rotateZ(b, rotate);
+        rotateZ(a, Camera.ROTATE_DEGREE.value);
+        rotateZ(b, Camera.ROTATE_DEGREE.value);
     }
 
     public void rotateRightZ() {
-        rotateZ(a, -rotate);
-        rotateZ(b, -rotate);
+        rotateZ(a, -Camera.ROTATE_DEGREE.value);
+        rotateZ(b, -Camera.ROTATE_DEGREE.value);
     }
 
     private void rotateZ(Point p, double rotateAngle) {
-        float oldX = p.getX();
-        float oldY = p.getY();
+        double oldX = p.getX();
+        double oldY = p.getY();
         p.setX((float) (oldX * cos(rotateAngle) - oldY * sin(rotateAngle)));
         p.setY((float) (oldX * sin(rotateAngle) + oldY * cos(rotateAngle)));
     }
 
     public void rotateLeftY() {
-        rotateY(a, rotate);
-        rotateY(b, rotate);
+        rotateY(a, Camera.ROTATE_DEGREE.value);
+        rotateY(b, Camera.ROTATE_DEGREE.value);
     }
 
     public void rotateRightY() {
-        rotateY(a, -rotate);
-        rotateY(b, -rotate);
+        rotateY(a, -Camera.ROTATE_DEGREE.value);
+        rotateY(b, -Camera.ROTATE_DEGREE.value);
     }
 
     private void rotateY(Point p, double rotateAngle) {
-        float oldX = p.getX();
-        float oldZ = p.getZ();
+        double oldX = p.getX();
+        double oldZ = p.getZ();
         p.setX((float) (oldX * cos(rotateAngle) - oldZ * sin(rotateAngle)));
         p.setZ((float) (oldX * sin(rotateAngle) + oldZ * cos(rotateAngle)));
     }
 
     public void rotateUpX() {
-        rotateX(a, -rotate);
-        rotateX(b, -rotate);
+        rotateX(a, -Camera.ROTATE_DEGREE.value);
+        rotateX(b, -Camera.ROTATE_DEGREE.value);
     }
 
     public void rotateDownX() {
-        rotateX(a, rotate);
-        rotateX(b, rotate);
+        rotateX(a, Camera.ROTATE_DEGREE.value);
+        rotateX(b, Camera.ROTATE_DEGREE.value);
     }
 
     private void rotateX(Point p, double rotateAngle) {
-        float oldY = p.getY();
-        float oldZ = p.getZ();
+        double oldY = p.getY();
+        double oldZ = p.getZ();
         p.setY((float) (oldY * cos(rotateAngle) - oldZ * sin(rotateAngle)));
         p.setZ((float) (oldY * sin(rotateAngle) + oldZ * cos(rotateAngle)));
     }
 
     public void moveBackward() {
-        a.setZ(a.getZ() - move);
-        b.setZ(b.getZ() - move);
+        a.setZ(a.getZ() - Camera.MOVE.value);
+        b.setZ(b.getZ() - Camera.MOVE.value);
     }
 
     public void moveForward() {
-        a.setZ(a.getZ() + move);
-        b.setZ(b.getZ() + move);
+        a.setZ(a.getZ() + Camera.MOVE.value);
+        b.setZ(b.getZ() + Camera.MOVE.value);
     }
 
     public Point getA() {
@@ -165,13 +155,5 @@ public class Line {
 
     public int getStopY() {
         return stopY;
-    }
-
-    public void setA(Point a) {
-        this.a = a;
-    }
-
-    public void setB(Point b) {
-        this.b = b;
     }
 }
